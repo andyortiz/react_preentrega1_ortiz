@@ -6,19 +6,22 @@ import Card from 'react-bootstrap/Card';
 
 const CardUsed = () => {
 
-  const { id } = useParams()
-  console.log("id Card:"+id)
-  const baseURL = `https://dummyjson.com/products/${ id || "1" }`;
-  const [post, setPost] = React.useState(null);
 
-  React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setPost(response.data);
-      console.log(post)
-    });
-  }, []);
+  // HINT: ¿De verdad necesitas esto?
+  
+  // const { id } = useParams()
+  // console.log("id Card:"+id)
+  // const baseURL = `https://dummyjson.com/products/${ id || "1" }`;
+  // const [post, setPost] = React.useState(null);
 
-  if (!post) return null;
+  // React.useEffect(() => {
+  //   axios.get(baseURL).then((response) => {
+  //     setPost(response.data);
+  //     console.log(post)
+  //   });
+  // }, []);
+
+  // if (!post) return null;
 
   return (
     <Card style={{ width: '18rem' }}>
