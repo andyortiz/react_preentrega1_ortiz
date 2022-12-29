@@ -15,22 +15,26 @@ const ItemListContainer = () => {
     return data.data.products;
   }
 
+  // useEffect(() => {
+  //   let ignore = false;
+
+  //   // Docu de react: https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
+  //   async function startFetching() {
+  //     const json = await fetchProducts();
+  //     if (!ignore) {
+  //       setPosts(json);
+  //     }
+  //   }
+
+  //   startFetching();
+
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, []);
+
   useEffect(() => {
-    let ignore = false;
-
-    // Docu de react: https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
-    async function startFetching() {
-      const json = await fetchProducts();
-      if (!ignore) {
-        setPosts(json);
-      }
-    }
-
-    startFetching();
-
-    return () => {
-      ignore = true;
-    };
+    fetchProducts().then((newProducts) => setPosts((prevState) => newProducts));
   }, []);
 
   useEffect(() => {
