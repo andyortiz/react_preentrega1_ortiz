@@ -1,37 +1,40 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-//import './style.css'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./style.css";
 
-const Navbar = () => {
-  
-  //const categories = ["smartphones", "laptops", "mens-watches", "womens-watches"]
-  //const activeStyle = { color: "#000000" };
-  const activeStyle = '{fontWeight: "bold",color: "black"}'
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
+function navBar() {
   return (
-    <ul className='navlink_container'>
-        <li>
-            <NavLink  className={'navlink'} to="/">Home</NavLink>
-        </li>
-        <li className="nav-item dropdown">
-          <NavLink className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categorías
-          </NavLink>
-          <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <NavLink className="dropdown-item" to="/category/smartphones" activeStyle={activeStyle}>Smartphones</NavLink>
-              <NavLink className="dropdown-item" to="/category/laptops" activeStyle={activeStyle}>Laptops</NavLink>
-              <NavLink className="dropdown-item" to="/category/mens-watches" activeStyle={activeStyle}>Reloj de Hombre</NavLink>
-              <NavLink className="dropdown-item" to="/category/womens-watches" activeStyle={activeStyle}>Reloj de Mujer</NavLink>  
-          </div>
-      </li>
-        <li>
-            <NavLink  className={'navlink'} to="/card/1">Card</NavLink>
-        </li>
-        <li>
-            <NavLink  className={'navlink'} to="/cart" >Cart</NavLink>
-        </li>
-    </ul>
-  )
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <NavDropdown title="Categorías" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/category/smartphones">
+                Smartphone
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/category/laptops">
+                Laptops
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/category/mens-watches">
+                Reloj de Hombre
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/category/womens-watches">
+                Reloj de Mujer
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default Navbar
+export default navBar;

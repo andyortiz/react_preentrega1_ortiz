@@ -6,7 +6,7 @@ const ItemListContainer = () => {
 
   
   return (
-    <div>Checkout</div>
+    <div>Checkouts</div>
   )
   };
 
