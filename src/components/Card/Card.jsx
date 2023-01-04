@@ -1,38 +1,23 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const CardUsed = () => {
+const CardUsed = (props) => {
 
-
-  // HINT: ¿De verdad necesitas esto?
+  const { item } = props
+  console.log(item)
   
-  // const { id } = useParams()
-  // console.log("id Card:"+id)
-  // const baseURL = `https://dummyjson.com/products/${ id || "1" }`;
-  // const [post, setPost] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   axios.get(baseURL).then((response) => {
-  //     setPost(response.data);
-  //     console.log(post)
-  //   });
-  // }, []);
-
-  // if (!post) return null;
-
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+    <Card style={{ width: '18rem' }} flex>
+      <Card.Img variant="top" src={item.thumbnail} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Title>{item.title}</Card.Title>
+        <Card.Text>{item.description}</Card.Text>
+        <Card.Text>Precio: ${item.price}</Card.Text>
+
+        <Button variant="primary">Ver Mas</Button>
       </Card.Body>
     </Card>
   );

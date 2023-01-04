@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Container from 'react-bootstrap/Container';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CardUsed from "../Card/Card";
@@ -8,40 +9,33 @@ const ItemListContainer = () => {
   const baseURLProducts = id
     ? `https://dummyjson.com/products/category/${id}`
     : "https://dummyjson.com/products/";
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   async function fetchProducts() {
     const data = await axios.get(baseURLProducts);
-    return data.data.products;
+    setPosts(data.data.products)
+
+    // console.log("URL Link (List): ",baseURLProducts)
+    // console.log("data.products (List): ", data.data.products)
+    // console.log("Posts (List): ",posts) 
   }
 
-  // useEffect(() => {
-  //   let ignore = false;
-
-  //   // Docu de react: https://beta.reactjs.org/learn/synchronizing-with-effects#fetching-data
-  //   async function startFetching() {
-  //     const json = await fetchProducts();
-  //     if (!ignore) {
-  //       setPosts(json);
-  //     }
-  //   }
-
-  //   startFetching();
-
-  //   return () => {
-  //     ignore = true;
-  //   };
-  // }, []);
-
   useEffect(() => {
-    fetchProducts().then((newProducts) => setPosts((prevState) => newProducts));
+    fetchProducts()
   }, []);
 
-  useEffect(() => {
-    console.log("Products: ", posts);
-  }, [posts]);
-
-  return <CardUsed />;
+  if (posts.length > 0) {
+    return (    
+      <div display='flex'>
+        <Container>
+            {posts.map( item => (
+            <CardUsed key={item.id} item={item}/>
+          ))}
+        </Container>
+      </div>
+    )  
+  }
+  
 };
 
 export default ItemListContainer;
